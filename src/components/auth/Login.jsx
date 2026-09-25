@@ -2,6 +2,7 @@ import { useState } from 'react'
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCreateUser } from '../../hooks/useUser';
+import Spinner from '../common/Spinner';
 
 const Login = ({action}) => {
   const [formData, setFormData] = useState({
@@ -11,7 +12,7 @@ const Login = ({action}) => {
 
   const navigate = useNavigate()
 
-  const { mutate, isPending } = useCreateUser();
+  const { mutate, isPending, } = useCreateUser();
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -67,7 +68,7 @@ const Login = ({action}) => {
         </div>
 
 
-        <button type='submit' className='w-full p-1.5 bg-blue-900 text-white hover:opacity-90 cursor-pointer transition-all rounded-md'>Login</button>
+        <button type='submit' className='flex justify-center items-center w-full p-1.5 bg-blue-900 text-white hover:opacity-90 cursor-pointer transition-all rounded-md'>{isPending ? `${<Spinner />}Loading...` : "Login"}</button>
       </form>
       <div className='p-5'>
         <small className='text-gray-600'>Don't have an account? <button onClick={()=> action(true)} className='text-blue-900 font-semibold'>Sign Up</button></small>
