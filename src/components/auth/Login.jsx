@@ -68,7 +68,7 @@ const Login = ({action}) => {
         </div>
 
 
-        <button type='submit' className='flex justify-center items-center w-full p-1.5 bg-blue-900 text-white hover:opacity-90 cursor-pointer transition-all rounded-md'>{isPending ? <Spinner /> Loadin... : "Login"}</button>
+        <button type='submit' className='flex justify-center items-center w-full p-1.5 bg-blue-900 text-white hover:opacity-90 cursor-pointer transition-all rounded-md'>{isPending ? <Spinner /> : "Login"}</button>
       </form>
       <div className='p-5'>
         <small className='text-gray-600'>Don't have an account? <button onClick={()=> action(true)} className='text-blue-900 font-semibold'>Sign Up</button></small>
