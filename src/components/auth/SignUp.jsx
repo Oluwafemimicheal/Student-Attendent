@@ -81,7 +81,7 @@ const SignUp = ({ action }) => {
         </div>
 
 
-        <button type='submit' className='w-full p-1.5 bg-blue-900 text-white hover:opacity-90 cursor-pointer transition-all rounded-md'>{isPending ? <div><Spinner /> Loading...</div> : "Create Account"}</button>
+        <button type='submit' className='w-full p-1.5 bg-blue-900 text-white hover:opacity-90 cursor-pointer transition-all rounded-md'>{isPending ? <div className='flex items-center justify-center gap-2'><Spinner /> Loading...</div> : "Create Account"}</button>
       </form>
       <div className='p-5'>
         <small className='text-gray-600'>I have an account? <button onClick={() => action(false)} className='text-blue-900 font-semibold'>Log in</button></small>
