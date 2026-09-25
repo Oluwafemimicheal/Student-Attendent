@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
+import { useCreateUser } from '../../hooks/useUser';
 
 const Login = ({action}) => {
   const [formData, setFormData] = useState({
@@ -10,26 +11,34 @@ const Login = ({action}) => {
 
   const navigate = useNavigate()
 
+  const { mutate, isPending } = useCreateUser();
 
-  const handleChange = (e) => {
+  function handleChange(e) {
     const { name, value } = e.target;
-
-    setFormData((prevData) => ({
+    setFormData(prevData => ({
       ...prevData,
-      [name]: value,
+      [name]: value
     }));
-  };
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData)
-    setFormData({
-      username: "",
-      password: ""
-    })
-    toast.success('Login Successfully!');
-    navigate('/dashboard')
-  }
+
+    mutate(formData, {
+      onSuccess: () => {
+        setFormData({
+          username: "",
+          password: ""
+        });
+        toast.success('Login Successfully!');
+        navigate('/dashboard');
+      },
+      onError: (error) => {
+        const message = error.response?.data?.message || 'Login failed. Please try again.';
+        toast.error(message);
+      }
+    });
+  };
 
   return (
     <div className='bg-white rounded-lg shadow-lg overflow-hidden w-100'>

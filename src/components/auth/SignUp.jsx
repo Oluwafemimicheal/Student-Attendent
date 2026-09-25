@@ -1,14 +1,17 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { useSignUp } from "../../hooks/useAuth";
 
 const SignUp = ({ action }) => {
 
   const [formData, setFormData] = useState({
     fullName: "",
+    email: "",
     password: "",
     center: ""
   })
 
+  const { mutate, isPending } = useSignUp();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,18 +24,23 @@ const SignUp = ({ action }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData)
+    mutate(formData, {
+      onSuccess: () => {
+        setFormData({
+          fullName: "",
+          password: "",
+          center: ""
+        });
 
-    setFormData({
-      fullName:"",
-      password:"",
-      center:""
-    })
-
-    toast.success('Account created Successfully!');
-    action(false)
-
-  }
+        toast.success('Account created Successfully!');
+        action(false);
+      },
+      onError: (error) => {
+        const message = error.response?.data?.message || 'Registration failed. Try again.';
+        toast.error(message);
+      }
+    });
+  };
 
   return (
     <div className='bg-white rounded-lg shadow-lg overflow-hidden w-100'>
@@ -50,6 +58,10 @@ const SignUp = ({ action }) => {
       <form onSubmit={handleSubmit} className='p-5 space-y-4'>
         <div className='border-2 border-gray-400 p-2 rounded-md focus-within:border-blue-900 focus-within:shadow'>
           <input type="text" placeholder='Full name' name='fullName' value={formData.fullName} onChange={handleChange} className='w-full outline-none group-focus-within:border-blue-900' />
+          <span></span>
+        </div>
+        <div className='border-2 border-gray-400 p-2 rounded-md focus-within:border-blue-900 focus-within:shadow'>
+          <input type="email" placeholder='email@gmail.com' name='email' value={formData.email} onChange={handleChange} className='w-full outline-none group-focus-within:border-blue-900' />
           <span></span>
         </div>
         <div className='border-2 border-gray-400 p-2 rounded-md focus-within:border-blue-900 focus-within:shadow'>
