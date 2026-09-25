@@ -1,19 +1,47 @@
-# React + Vite
+1. Dashboard (The Home Page)
+This is the "at-a-glance" page. Instead of diving straight into a list, the user sees the current status.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Key Features:
+Quick Stats: Total students, today's overall attendance percentage.
+Session Indicator: A clear label showing if the current time is "Morning Session" or "Afternoon Session."
+Quick Action Buttons: "Start Morning Attendance" or "Start Afternoon Attendance."
+Alerts: List of students who have been absent for 3+ consecutive days.
+2. Daily Attendance Marking Page (The Core Page)
+This is where the actual work happens. It needs to be very fast to use.
 
-Currently, two official plugins are available:
+Key Features:
+Session Toggle: A switch or tab to flip between Morning (9-12) and Afternoon (1-4).
+Student List: A table/list of students with checkboxes or "Present/Absent/Late" buttons.
+Search/Filter: A search bar to find a specific student quickly.
+Save Button: A prominent button to commit the data for that specific session.
+Date Picker: Ability to go back to yesterday if a mistake was made.
+3. Student Directory (Management Page)
+You need a place to manage who is actually in the class.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Key Features:
+Add/Edit/Delete Students: A way to add new enrollments or remove students who left.
+Student Profiles: Click a name to see their basic info (ID, contact, etc.).
+Import/Export: A button to upload a CSV list of students.
+4. Weekly Progress Report (The Analytics Page)
+This fulfills your requirement to "save each week's progress."
 
-## React Compiler
+Key Features:
+Week Selector: A dropdown to choose which week of the semester/year to view.
+Attendance Grid: A table where:
+Rows = Students.
+Columns = Monday to Friday.
+Cells = A split cell for Morning (M) and Afternoon (A).
+Visual Cues: Green for present, Red for absent, Yellow for late.
+Weekly Percentage: A final column calculating the % of attendance for that week.
+5. Individual Student Detail Page (Deep Dive)
+Useful for parent-teacher meetings or academic reviews.
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+Key Features:
+Attendance Calendar: A heat-map calendar showing every day the student attended.
+Session Breakdown: Total morning hours vs. total afternoon hours.
+Trend Line: A small graph showing if their attendance is improving or declining.
+6. Login/Authentication Page (Security)
+Since attendance is official data, it shouldn't be public.
 
-Note: This will impact Vite dev & build performances.
-You can also try [the experimental native React Compiler support in plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md#rust-react-compiler) by using `compiler: true` in the plugin options instead of using the Babel plugin.
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Key Features:
+Simple Email/Password login for the teacher or administrator.
