@@ -61,7 +61,7 @@ const Login = ({action}) => {
         </div>
         <div className='mb-10'>
         <div className='border-2 border-gray-400 p-2 rounded-md focus-within:border-blue-900 focus-within:shadow'>
-          <input type="text" placeholder='password' name='password' value={formData.password} onChange={handleChange} className='w-full outline-none' />
+            <input type="password" placeholder='password' name='password' value={formData.password} onChange={handleChange} className='w-full outline-none' />
           <span></span>
         </div>
         <Link to={''} className='text-sm float-right mt-1 text-blue-900 hover:text-red-600'>Forgot password</Link>

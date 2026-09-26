@@ -66,7 +66,7 @@ const SignUp = ({ action }) => {
           <span></span>
         </div>
         <div className='border-2 border-gray-400 p-2 rounded-md focus-within:border-blue-900 focus-within:shadow'>
-          <input type="text" placeholder='Password' name='password' value={formData.password} onChange={handleChange} className='w-full outline-none group-focus-within:border-blue-900' />
+          <input type="password" placeholder='Password' name='password' value={formData.password} onChange={handleChange} className='w-full outline-none group-focus-within:border-blue-900' />
           <span></span>
         </div>
         <div className='border-2 border-gray-400 p-2 rounded-md focus-within:border-blue-900 focus-within:shadow'>
