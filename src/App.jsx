@@ -1,10 +1,11 @@
 import { Route, Routes } from "react-router-dom"
-import Dashboard from "./layouts/Dashboard"
 import Auth from "./layouts/Auth"
 import Login from "./components/auth/Login"
 import { Toaster } from "react-hot-toast"
 import { ProtectedRoute } from "./components/ProtectedRoute"
 import { PublicRoute } from "./components/PublicRoute"
+import DashboardLayout from "./layouts/Dashboard"
+import Dashboard from "./components/dashboard/dashboard"
 
 const App = () => {
   return (
@@ -19,7 +20,8 @@ const App = () => {
         </Route>
 
         <Route element={<ProtectedRoute />}>
-          <Route path="/dashboard" element={<Dashboard />}>
+          <Route element={<DashboardLayout />}>
+            <Route path="/dashboard" element={<Dashboard />} />
           </Route>
         </Route>
 

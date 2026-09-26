@@ -10,7 +10,7 @@ const links = [
   {
     title: "Dashboard",
     apiRoute: "/dashboard",
-    icon: <BiSolidDashboard size={20}/>
+    icon: <BiSolidDashboard size={20} />
   },
   {
     title: "Daily Attendance",
