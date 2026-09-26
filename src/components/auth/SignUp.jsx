@@ -44,7 +44,7 @@ const SignUp = ({ action }) => {
   };
 
   return (
-    <div className='bg-white rounded-lg shadow-lg overflow-hidden lg:w-100'>
+    <div className='bg-white rounded-lg shadow-lg overflow-hidden lg:w-100 mx-auto'>
       <div className='bg-blue-900 p-5 flex items-center gap-5'>
         <div className='bg-white p-2 rounded-md'>
           <h1 className='text-blue-900 font-bold text-lg'>NH</h1>
