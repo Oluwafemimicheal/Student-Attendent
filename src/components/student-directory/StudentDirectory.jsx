@@ -1,0 +1,10 @@
+
+const StudentDirectory = () => {
+  return (
+    <div>
+      <h1>Student Directory</h1>
+    </div>
+  )
+}
+
+export default StudentDirectory

@@ -24,7 +24,7 @@ const links = [
   },
   {
     title: "Weekly Progress Report",
-    apiRoute: "/weekly-progress-report",
+    apiRoute: "/weekly-progress",
     icon: <TbReportAnalyticsFilled size={20} />
   },
   {

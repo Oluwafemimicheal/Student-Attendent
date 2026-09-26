@@ -6,6 +6,8 @@ Quick Stats: Total students, today's overall attendance percentage.
 Session Indicator: A clear label showing if the current time is "Morning Session" or "Afternoon Session."
 Quick Action Buttons: "Start Morning Attendance" or "Start Afternoon Attendance."
 Alerts: List of students who have been absent for 3+ consecutive days.
+
+
 2. Daily Attendance Marking Page (The Core Page)
 This is where the actual work happens. It needs to be very fast to use.
 

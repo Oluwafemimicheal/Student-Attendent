@@ -5,7 +5,11 @@ import { Toaster } from "react-hot-toast"
 import { ProtectedRoute } from "./components/ProtectedRoute"
 import { PublicRoute } from "./components/PublicRoute"
 import DashboardLayout from "./layouts/Dashboard"
-import Dashboard from "./components/dashboard/dashboard"
+import DashboardPage from "./pages/DashboardPage"
+import DailyAttendancePage from "./pages/DailyAttendancePage"
+import StudentDirectoryPage from "./pages/StudentDirectoryPage"
+import WeeklyProgressReportPage from "./pages/WeeklyProgressReportPage"
+import IndividualStudentPage from "./pages/IndividualStudentPage"
 
 const App = () => {
   return (
@@ -21,7 +25,11 @@ const App = () => {
 
         <Route element={<ProtectedRoute />}>
           <Route element={<DashboardLayout />}>
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/daily-attendance" element={<DailyAttendancePage />} />
+            <Route path="/student-directory" element={<StudentDirectoryPage />} />
+            <Route path="/weekly-progress" element={<WeeklyProgressReportPage />} />
+            <Route path="/individual-student" element={<IndividualStudentPage />} />
           </Route>
         </Route>
 
