@@ -35,7 +35,7 @@ const links = [
 ]
 
 
-const Sidebar = () => {
+const Sidebar = ({ action }) => {
   const {data: user} = useAuth()
   return (
     <div className="flex flex-col gap-10 h-full">
@@ -53,7 +53,7 @@ const Sidebar = () => {
         {
           links.map((link, index) => (
             <li>
-              <NavLink key={index} to={link.apiRoute} className={({ isActive }) => `transition-all flex items-center gap-2 p-2 rounded-md font-semibold ${isActive ? "bg-white text-blue-900" : "text-white bg-transparent"} hover:bg-white/10 hover:border border border-transparent hover:border-white/20 backdrop-blur-2xl hover:text-white`} >{link.icon} {link.title}</NavLink>
+              <NavLink onClick={() => action(false)} key={index} to={link.apiRoute} className={({ isActive }) => `transition-all flex items-center gap-2 p-2 rounded-md font-semibold ${isActive ? "bg-white text-blue-900" : "text-white bg-transparent"} hover:bg-white/10 hover:border border border-transparent hover:border-white/20 backdrop-blur-2xl hover:text-white`} >{link.icon} {link.title}</NavLink>
             </li>
           ))
         }

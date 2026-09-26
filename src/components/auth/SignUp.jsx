@@ -44,7 +44,7 @@ const SignUp = ({ action }) => {
   };
 
   return (
-    <div className='bg-white rounded-lg shadow-lg overflow-hidden w-100'>
+    <div className='bg-white rounded-lg shadow-lg overflow-hidden lg:w-100'>
       <div className='bg-blue-900 p-5 flex items-center gap-5'>
         <div className='bg-white p-2 rounded-md'>
           <h1 className='text-blue-900 font-bold text-lg'>NH</h1>
@@ -83,6 +83,8 @@ const SignUp = ({ action }) => {
 
         <button type='submit' className='w-full p-1.5 bg-blue-900 text-white hover:opacity-90 cursor-pointer transition-all rounded-md'>{isPending ? <div className='flex items-center justify-center gap-2'><Spinner /> Loading...</div> : "Create Account"}</button>
       </form>
+
+
       <div className='p-5'>
         <small className='text-gray-600'>I have an account? <button onClick={() => action(false)} className='text-blue-900 font-semibold'>Log in</button></small>
       </div>

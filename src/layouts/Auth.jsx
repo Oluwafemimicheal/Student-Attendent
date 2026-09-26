@@ -7,10 +7,10 @@ const Auth = () => {
   const [show, setShow] = useState(false)
 
   return (
-    <div className='flex flex-col justify-center items-center h-screen space-y-3 bg-gray-100'>
+    <div className='flex flex-col justify-center items-center h-screen space-y-3 bg-gray-100 w-full'>
 
 
-      <div className='grow mt-30'>
+      <div className='grow lg:mt-30 mt-20 lg:p-0 p-4 w-full'>
         {
           !show ? <Login  action={setShow}/> : <SignUp action={setShow} />
         }
