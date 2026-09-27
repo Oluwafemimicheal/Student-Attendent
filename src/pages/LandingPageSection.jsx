@@ -1,11 +1,13 @@
 import React from 'react'
 import Hero from '../components/landingpage/Hero'
+import Review from '../components/landingpage/Review'
 
 const LandingPageSection = () => {
   return (
-    <div>
+    <>
       <Hero/>
-    </div>
+      <Review />
+    </>
   )
 }
 

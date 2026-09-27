@@ -1,4 +1,6 @@
-import { FaBook, FaBookDead, FaBookmark, FaCheck, FaCode, FaCodeBranch, FaCreativeCommonsNcEu, FaMale, FaPlayCircle } from "react-icons/fa"
+import Card from "../common/Card"
+import { FaCheck, FaCode, FaMale, FaPlayCircle } from "react-icons/fa"
+
 
 const Hero = () => {
 
@@ -8,6 +10,7 @@ const Hero = () => {
   return (
     <div className="w-300 mx-auto h-auto py-20 flex justify-center flex-col relative">
       <div className="flex justify-center flex-col items-center gap-3">
+
         <span className="bg-white/20 border border-white/30 rounded-2xl flex items-center gap-2 p-1 px-4 text-white text-xs font-semibold"><FaPlayCircle className="text-white" /> Start your interactive demo now!</span>
 
         <div className="text-center space-y-2">
@@ -36,6 +39,22 @@ const Hero = () => {
         <div>
           <div className="absolute top-30 left-10 bg-white/20 border border-white/30 rounded-2xl flex items-center gap-2 p-1 px-2 text-white text-sm font-semibold opacity-10 animate-pulse"> <FaCode size={25} /> Programer</div>
           <div className="absolute top-60 right-20 bg-white/20 border border-white/30 rounded-2xl flex items-center  p-1 px-2 text-white text-sm font-semibold opacity-10 animate-pulse anima"> <FaMale size={25} /> Human Resource</div>
+        </div>
+
+        <div className="mt-10 text-center space-y-4 w-250 mx-auto">
+          <h3 className="text-gray-300 font-semibold text-md">Student activities & productivity metrics trusted by organizations + global users</h3>
+
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+            {
+              ["ArkTech", "WayAirline", "New Horizons", "Daily Bank", "INsigh Tech"].map((logo, index) => (
+                <Card key={index}>
+                  <div className="text-gray-300 font-semibold">
+                    {logo}
+                  </div>
+                </Card>
+              ))
+            }
+          </div>
         </div>
 
       </div>
