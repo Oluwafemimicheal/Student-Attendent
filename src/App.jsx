@@ -10,6 +10,7 @@ import DailyAttendancePage from "./pages/DailyAttendancePage"
 import StudentDirectoryPage from "./pages/StudentDirectoryPage"
 import WeeklyProgressReportPage from "./pages/WeeklyProgressReportPage"
 import IndividualStudentPage from "./pages/IndividualStudentPage"
+import LandingPage from "./layouts/LandingPage"
 
 const App = () => {
   return (
@@ -19,7 +20,7 @@ const App = () => {
         {/* Auth Router */}
         <Route element={<PublicRoute />}>
           <Route element={<Auth />}>
-            <Route path="/" element={<Login />} />
+            <Route path="/auth" element={<Login />} />
           </Route>
         </Route>
 
@@ -32,6 +33,9 @@ const App = () => {
             <Route path="/individual-student" element={<IndividualStudentPage />} />
           </Route>
         </Route>
+
+        <Route path="/" element={<LandingPage />} />
+
 
         <Route path="*" element={<div>404 Not Found</div>} />
       </Routes>
