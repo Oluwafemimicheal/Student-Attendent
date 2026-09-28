@@ -32,7 +32,7 @@ const Login = ({action}) => {
           password: ""
         });
         toast.success('Login Successfully!');
-        navigate('/dashboard');
+        navigate('/');
       },
       onError: (error) => {
         const message = error.response?.data?.message || 'Login failed. Please try again.';

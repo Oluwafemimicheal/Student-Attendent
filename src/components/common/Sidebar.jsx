@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom"
-import { Navbar } from "../../utils/logout"
+import { Logout } from "../../utils/logout"
 import { useAuth } from "../../hooks/useAuth"
 import { BiSolidDashboard, BiSolidSpreadsheet } from "react-icons/bi";
 import { FaDirections } from "react-icons/fa";
@@ -36,10 +36,10 @@ const links = [
 
 
 const Sidebar = ({ action }) => {
-  const {data: user} = useAuth()
+  const { data: user } = useAuth()
   return (
     <div className="flex flex-col gap-10 h-full">
-      <div className='bg-blue-900 flex items-center gap-4 bg-white/10 border border-white/10 backdrop-blur-2xl p-3 rounded-lg'>
+      <div className='bg-blue-900 flex items-center gap-4 border border-white/10 backdrop-blur-2xl p-3 rounded-lg'>
         <div className='bg-white p-2 rounded-md'>
           <h1 className='text-blue-900 font-bold text-lg'>NH</h1>
         </div>
@@ -60,7 +60,7 @@ const Sidebar = ({ action }) => {
       </ul>
       <div>
 
-        <Navbar />
+        <Logout />
       </div>
     </div>
   )

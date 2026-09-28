@@ -3,7 +3,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { storage } from './storage';
 import { TbLogout } from "react-icons/tb";
 
-export const Navbar = () => {
+export const Logout = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
