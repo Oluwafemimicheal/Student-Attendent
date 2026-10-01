@@ -1,14 +1,19 @@
+import { useState } from "react";
 import { useAuth } from "../../hooks/useAuth"
 import { useTime } from "../../utils/time"
 import { FaPeopleArrows, FaRegBell, FaUserAlt } from "react-icons/fa";
 import { FiSettings } from "react-icons/fi";
 import { LuSunMoon } from "react-icons/lu";
+import AddStudent from "./add-student";
+import { useAllStudentsData } from "../../hooks/useStudent";
 
 
 
 
 const Dashboard = () => {
   const { data: user } = useAuth()
+  const { data: students } = useAllStudentsData()
+  const [addStudent, setAddStudent] = useState(false)
 
   const time = useTime()
   return (
@@ -21,19 +26,17 @@ const Dashboard = () => {
         </div>
         <div className="flex items-center gap-2">
 
-          <button className="flex justify-center items-center w-max h-8 p-2 rounded-md bg-blue-800 font-semibold text-white cursor-pointer">+ New Student</button>
+          <button onClick={() => setAddStudent(true)} className="flex justify-center items-center w-max h-8 p-2 rounded-md bg-blue-800 font-semibold text-white cursor-pointer">+ New Student</button>
 
           <button className="flex justify-center items-center w-8 h-8 p-2 rounded-md bg-white/40 border border-blue-800/30 cursor-pointer"><FaRegBell size={22} /></button>
 
           <button className="flex justify-center items-center w-8 h-8 p-1 rounded-md bg-white/40 border border-blue-800/30 cursor-pointer"><FiSettings size={18} /></button>
 
-          <div title="Profile" className="flex justify-center items-center w-8 h-8 p-1.5 rounded-full overflow-hidden! bg-white/40 border border-blue-800/30 cursor-pointer">
-            {!user.image ? <img src={user.image} alt="profile image" /> : <FaUserAlt size={30} className="text-blue-800" />}
-
+          <div title="Profile" className="flex justify-center items-center w-8 h-8 rounded-full overflow-hidden!font-bold text-lg font-bold bg-blue-800  cursor-pointer text-white overflow-hidden">
+            <img src={user.image} alt="profile" />
           </div>
         </div>
       </div>
-
 
       <div className='grid lg:grid-cols-4 gap-5 h-40'>
         <div className='flex flex-col gap-5 bg-white/40 border border-blue-800/30 p-5 rounded-lg'>
@@ -49,10 +52,23 @@ const Dashboard = () => {
         <div className='col-span-2 bg-white/50 border border-blue-800/30 p-5 rounded-lg'></div>
       </div>
 
-
-
       <div className='bg-white/50 border border-blue-800/30 p-5 rounded-lg grow'>
+        <h2>Students List </h2>
+
+        <ul>
+          {students?.map((student, index) => (
+            <li key={index}>{student.fullName}</li>
+          ))}
+        </ul>
       </div>
+
+
+
+      {
+        addStudent && <div className="fixed top-0 left-0 w-full flex justify-center items-center h-screen z-99 bg-black/20 backdrop-blur-xs">
+          <AddStudent action={setAddStudent} />
+        </div>
+      }
     </div>
   )
 }

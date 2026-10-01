@@ -11,6 +11,7 @@ import StudentDirectoryPage from "./pages/StudentDirectoryPage"
 import WeeklyProgressReportPage from "./pages/WeeklyProgressReportPage"
 import IndividualStudentPage from "./pages/IndividualStudentPage"
 import LandingPage from "./layouts/LandingPage"
+import OtpInput from "./components/auth/OtpInput"
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
         <Route element={<PublicRoute />}>
           <Route element={<Auth />}>
             <Route path="/auth" element={<Login />} />
+            <Route path="otp-verify" element={<OtpInput />} />
           </Route>
         </Route>
 
@@ -38,7 +40,9 @@ const App = () => {
 
 
         <Route path="*" element={<div>404 Not Found</div>} />
+
       </Routes>
+      {/* <OtpInput /> */}
     </div>
   )
 }

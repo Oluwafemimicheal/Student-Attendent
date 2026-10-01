@@ -1,19 +1,20 @@
 import { useState } from "react";
-import toast from "react-hot-toast";
-import { useSignUp } from "../../hooks/useAuth";
+import { useCreateStudent } from "../../hooks/useStudent";
 import Spinner from "../common/Spinner";
+import toast from "react-hot-toast";
+import { useAuth } from "../../hooks/useAuth";
 
-const SignUp = ({ action }) => {
-
-  const [formData, setFormData] = useState({
-    fullName: "",
-    email: "",
-    password: "",
-    center: "",
-    role: ""
-  })
-
-  const { mutate, isPending } = useSignUp();
+const AddStudent = ({action}) => {
+  const { data: user } = useAuth()
+    const [formData, setFormData] = useState({
+      user: user._id,
+      fullName: "",
+      email: "",
+      course: "",
+      phoneNumber: "",
+      image:"",
+    })
+  const { mutate, isPending } = useCreateStudent();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -31,12 +32,12 @@ const SignUp = ({ action }) => {
         setFormData({
           fullName: "",
           email: "",
-          password: "",
-          center: "",
-          role: ""
+          course: "",
+          phoneNumber: "",
+          image:"",
         });
 
-        toast.success('Account created Successfully!');
+        toast.success('Student add Successfully!');
         action(false);
       },
       onError: (error) => {
@@ -53,8 +54,8 @@ const SignUp = ({ action }) => {
           <h1 className='text-blue-900 font-bold text-lg'>NH</h1>
         </div>
         <div>
-          <h1 className='text-white text-2xl font-semibold'>Create an account</h1>
-          <p className='text-sm text-gray-300'>Student Attendant Protocol</p>
+          <h1 className='text-white text-2xl font-semibold'>New Student Form</h1>
+          <p className='text-sm text-gray-300'>Student Information</p>
         </div>
       </div>
 
@@ -69,28 +70,22 @@ const SignUp = ({ action }) => {
           <span></span>
         </div>
         <div className='border-2 border-gray-400 p-2 rounded-md focus-within:border-blue-900 focus-within:shadow'>
-          <input type="password" placeholder='Password' name='password' value={formData.password} onChange={handleChange} className='w-full outline-none group-focus-within:border-blue-900' />
+          <input type="phone" placeholder='+234 584 5334 432' name='phoneNumber' value={formData.phoneNumber} onChange={handleChange} className='w-full outline-none group-focus-within:border-blue-900' />
           <span></span>
         </div>
+       
 
         <div className='border-2 border-gray-400 p-2 rounded-md focus-within:border-blue-900 focus-within:shadow'>
-          <select name="center" onChange={handleChange} value={formData.center} className="w-full outline-none">
-            <option value="">--Select your center--</option>
-            <option value="lekki">Lekki</option>
-            <option value="ikeja">Head Office </option>
-            <option value="surelere">Surelere</option>
-            <option value="egbeda">Egbeda</option>
+          <select name="course" onChange={handleChange} value={formData.course} className="w-full outline-none">
+            <option value="">--Student course--</option>
+            <option value="frontend">Frontend</option>
+            <option value="backend">Backend</option>
+            <option value="full-stack">Full Stack</option>
           </select>
 
         </div>
         <div className='border-2 border-gray-400 p-2 rounded-md focus-within:border-blue-900 focus-within:shadow'>
-          <select name="role" onChange={handleChange} value={formData.role} className="w-full outline-none">
-            <option value="">--Select your role--</option>
-            <option value="student">Student</option>
-            <option value="instructor">Instructor</option>
-            <option value="admin">Admin</option>
-          </select>
-
+          <input type="file" name="image"/>
         </div>
 
 
@@ -106,4 +101,4 @@ const SignUp = ({ action }) => {
   )
 }
 
-export default SignUp
+export default AddStudent

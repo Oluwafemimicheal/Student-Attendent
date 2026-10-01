@@ -2,7 +2,7 @@ import { FaChevronDown, FaUser } from "react-icons/fa"
 import { Link } from "react-router-dom"
 import { BtnSec, BtnPry } from "../common/Button"
 import { useAuth } from "../../hooks/useAuth"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Logout } from "../../utils/logout"
 import { FiSettings } from "react-icons/fi";
 import SignUp from "../auth/SignUp"
@@ -43,9 +43,29 @@ const Navbar = () => {
   const [showProfile, setShowProfile] = useState(false)
   const [signUp, setSignUp] = useState(false)
   const [dropDown, setDropDown] = useState(false)
+  const [scroll, setScroll] = useState(false)
+  const [selected, setSelected] = useState(null)
   const { data: user } = useAuth()
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setScroll(true);
+      } else {
+        setScroll(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+
   return (
-    <header className="py-5">
+    <header className={`py-5`}>
       <nav onClick={() => setShowProfile(false)} className="w-300 mx-auto flex justify-between items-center relative">
 
         <div>
@@ -56,15 +76,13 @@ const Navbar = () => {
           {
             links.map((link, index) => (
               <div key={index} >
-
                 {
-                  <li to={link.apiRoute} onClick={(e) => setDropDown(e.t)} className={`flex items-center gap-1 text-white transition-all p-1 rounded-md font-semibold cursor-pointer`}>{link.title} {link.icon}</li>
+                  <li to={link.apiRoute} onClick={(e) => setDropDown(selected)} className={`flex items-center gap-1 text-white transition-all p-1 rounded-md font-semibold cursor-pointer`}>{link.title} {link.icon}</li>
                 }
-                <div className="absolute top-10 left-0 w-full">{dropDown && link.isDropDown && <Dropdown data={link} />}</div>
-
               </div>
             ))
           }
+
         </ul>
 
         <>
@@ -74,9 +92,9 @@ const Navbar = () => {
                 <Link to={"/dashboard"}>
                   <BtnPry text={"Dashboard"} />
                 </Link>
-                <button onClick={(e) => { e.stopPropagation(), setShowProfile(true) }} className="w-10 h-10 font-bold text-lg flex justify-center items-center bg-blue-800 rounded-full border border-white/30 cursor-pointer text-white">
-                  {user.fullName.slice(0, 2).toUpperCase()}
-                </button>
+                <div onClick={(e) => { e.stopPropagation(), setShowProfile(true) }} className="w-10 h-10 font-bold text-lg flex justify-center items-center bg-blue-800 rounded-full border border-white/30 cursor-pointer text-white overflow-hidden">
+                  <img src={user.image} alt="profile" />
+                </div>
               </div> :
               <div className="space-x-3">
                 <Link to={"/auth"}>
