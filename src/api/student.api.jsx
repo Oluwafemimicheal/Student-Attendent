@@ -8,7 +8,7 @@ export const addStudent = async (studentData) => {
 
 export const getAllStudent = async () => {
   const { data } = await api.get('/api/student/');
-  return data.data;
+  return { data: data.data, count: data.count };
 };
 
 export const getSingleStudent = async (id) => {

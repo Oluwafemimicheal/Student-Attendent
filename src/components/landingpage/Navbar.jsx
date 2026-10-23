@@ -69,7 +69,7 @@ const Navbar = () => {
       <nav onClick={() => setShowProfile(false)} className="w-300 mx-auto flex justify-between items-center relative">
 
         <div>
-          <Link to={"/"} className="p-2 rounded-lg bg-clip-text  bg-linear-70 from-blue-800 to-orange-600  text-white font-semibold">INsight</Link>
+          <Link to={'/'} className='bg-black/20 backdrop-blur-md rounded-md border border-white/30 p-1 text-white text-lg'><span className='bg-blue-800 px-1 py-0 rounded-md mr-0.5'>IN</span>sight</Link>
         </div>
 
         <ul className="flex items-center gap-8 relative">

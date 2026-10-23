@@ -6,14 +6,22 @@ import { FiSettings } from "react-icons/fi";
 import { LuSunMoon } from "react-icons/lu";
 import AddStudent from "./add-student";
 import { useAllStudentsData } from "../../hooks/useStudent";
+import StudentList from "../common/StudentList";
+import Spinner from "../common/Spinner";
+import { Chart } from "../common/Chart";
+import { filter } from "../../utils/filter";
+import { CourseDistributionChart } from "../common/PieChart";
 
 
 
 
 const Dashboard = () => {
   const { data: user } = useAuth()
-  const { data: students } = useAllStudentsData()
+  const { data, isLoading, isError } = useAllStudentsData()
   const [addStudent, setAddStudent] = useState(false)
+
+  const studentsList = data?.data;
+  const totalStudents = data?.count;
 
   const time = useTime()
   return (
@@ -45,21 +53,27 @@ const Dashboard = () => {
           </div>
           <div>
             <h1 className="text-2xl text-gray-900 font-semibold">Total Students</h1>
-            <p className="text-gray-700">24 <span>Pupils</span></p>
+            <p className="text-gray-700">{totalStudents} <span>Pupils</span></p>
           </div>
         </div>
         <div className='bg-white/50 border border-blue-800/30 p-5 rounded-lg'></div>
-        <div className='col-span-2 bg-white/50 border border-blue-800/30 p-5 rounded-lg'></div>
+        <div className='col-span-2 bg-white/50 border border-blue-800/30 p-2 rounded-lg'>
+          <Chart />
+        </div>
       </div>
 
-      <div className='bg-white/50 border border-blue-800/30 p-5 rounded-lg grow'>
-        <h2>Students List </h2>
+      <div className='bg-gray-100 border border-blue-800/30 p-5 rounded-lg grow space-y-4 overflow-y-auto scrollbar-none'>
+        <h2 className="font-semibold text-lg text-gray-800 sticky top-0 z-1 bg-gray-100 pb-2">Recent Student</h2>
 
-        <ul>
-          {students?.map((student, index) => (
-            <li key={index}>{student.fullName}</li>
-          ))}
-        </ul>
+        {
+          isLoading ? <div className="flex justify-center items-center h-full"><Spinner /></div> :
+            <ul className="space-y-1.5">
+              {studentsList?.map((student, index) => (
+                <StudentList key={index} data={student} />
+              ))}
+            </ul>
+        }
+
       </div>
 
 

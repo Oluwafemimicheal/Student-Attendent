@@ -18,7 +18,7 @@ export const useCreateStudent = () => {
 
 export const useAllStudentsData = () => {
   return useQuery({
-    queryKey: ['student'],
+    queryKey: ['students'],
     queryFn: getAllStudent,
     retry: false,
     staleTime: 1000 * 5, 
@@ -30,7 +30,7 @@ export const useAllStudentsData = () => {
 
 export const useSingleStudentData = (id) => {
   return useQuery({
-    queryKey: ['student', id],
+    queryKey: ['students', id],
     queryFn: () => getSingleStudent(id),
     enabled: !!id,
     retry: false,
@@ -43,7 +43,7 @@ export const useUpdateStudentData = () => {
   return useMutation({
     mutationFn: ({ id, data }) => updateStudent(id, data),
     onSuccess: () => {
-      queryClient.invalidateQueries(['student']);
+      queryClient.invalidateQueries(['students']);
       console.log("Student updated successfully!");
     },
     onError: (error) => {
@@ -56,7 +56,7 @@ export const useDeleteStudentData = () => {
   return useMutation({
     mutationFn: (id) => deleteStudent(id),
     onSuccess: () => {
-      queryClient.invalidateQueries(['student']);
+      queryClient.invalidateQueries(['students']);
       console.log("Student deleted successfully!");
     },
     onError: (error) => {
